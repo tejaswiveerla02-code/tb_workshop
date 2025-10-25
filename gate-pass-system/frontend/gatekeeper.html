@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gatekeeper - Verify Pass</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>🚪 Gatekeeper Panel</h1>
+    <input id="idInput" placeholder="Enter Pass ID" />
+    <button onclick="verify()">🔍 Check Pass</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    async function verify() {
+      const id = document.getElementById("idInput").value;
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "";
+
+      if (!id) {
+        resultDiv.innerHTML = `<p style="color:#8f191d">❌ Please enter a Pass ID</p>`;
+        return;
+      }
+
+      try {
+        const res = await fetch(`http://localhost:3000/scan/${id}`);
+        const data = await res.json();
+
+        if (res.status === 404) {
+          resultDiv.innerHTML = `<p style="color:#8f191d">❌ ${data.message}</p>`;
+          return;
+        }
+
+        resultDiv.innerHTML = `
+          <div class="pass-card">
+            <p>🆔 <b>Student ID:</b> ${data.studentId}</p>
+            <p>✏️ <b>Reason:</b> ${data.reason}</p>
+            <p>📅 <b>Date:</b> ${data.date} ⏰ <b>Time:</b> ${data.time}</p>
+            <p>📊 <b>Status:</b> ${data.status}</p>
+            <p>📝 <b>Remarks:</b> ${data.remarks}</p>
+          </div>
+        `;
+      } catch (err) {
+        console.error(err);
+        resultDiv.innerHTML = `<p style="color:#8f191d">❌ Error fetching pass. Is backend running?</p>`;
+      }
+    }
+  </script>
+</body>
+</html>

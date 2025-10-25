@@ -1,0 +1,31 @@
+{
+  "requests": [
+    {
+      "id": 1761381707426,
+      "studentId": "student123",
+      "reason": "health issue",
+      "date": "25/10/2025",
+      "time": "2:11:47 pm",
+      "status": "pending",
+      "remarks": ""
+    },
+    {
+      "id": 1761386396115,
+      "studentId": "22CS101",
+      "reason": "Going home for the weekend",
+      "date": "25/10/2025",
+      "time": "3:29:56 pm",
+      "status": "approved",
+      "remarks": "Looks good to go"
+    },
+    {
+      "id": 1761386699260,
+      "studentId": "student12345",
+      "reason": "homesick",
+      "date": "25/10/2025",
+      "time": "3:34:59 pm",
+      "status": "pending",
+      "remarks": ""
+    }
+  ]
+}

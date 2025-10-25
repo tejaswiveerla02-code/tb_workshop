@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎓 Gate Pass System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎓 Gate Pass Request</h1>
+
+    <!-- 🗓️ Live Date and Time -->
+    <div class="datetime-box">
+      <p id="liveDate"></p>
+      <p id="liveTime"></p>
+    </div>
+
+    <!-- 🧑‍🎓 Student ID input -->
+    <div class="form-group">
+      <input type="text" id="studentId" placeholder=" " />
+      <label for="studentId">🆔 Student ID</label>
+    </div>
+
+    <!-- ✏️ Reason input -->
+    <div class="form-group">
+      <textarea id="reason" placeholder=" "></textarea>
+      <label for="reason">✏️ Reason</label>
+    </div>
+
+    <button onclick="sendRequest()">🚀 Submit Request</button>
+    <p id="msg"></p>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // 🔁 Live date and time update
+    function updateDateTime() {
+      const now = new Date();
+      document.getElementById("liveDate").textContent = `📅 Date: ${now.toLocaleDateString()}`;
+      document.getElementById("liveTime").textContent = `⏰ Time: ${now.toLocaleTimeString()}`;
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+  </script>
+</body>
+</html>
